@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasbih</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="countercss.css">
+</head>
+<body>
+    <div class="atmosphere" aria-hidden="true"></div>
+
+    <main class="app">
+        <header class="brand">
+            <h1>Tasbih</h1>
+            <!-- <p>Count with calm and presence.</p> -->
+        </header>
+
+        <section class="counter" aria-live="polite">
+            <!-- <span class="count-label">Count</span> -->
+            <p id="result" class="count">0</p>
+        </section>
+
+        <div class="actions">
+            <button type="button" id="button1" class="btn-tap">
+                <span>Tap</span>
+            </button>
+            <button type="button" id="button2" class="btn-reset">Reset</button>
+        </div>
+    </main>
+
+    <script src="counter.js"></script>
+</body>
+</html>

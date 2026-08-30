@@ -1,0 +1,191 @@
+:root {
+    --ink: #102820;
+    --ink-soft: #3d5a4c;
+    --mist: #e8f0ea;
+    --jade: #1a6b4f;
+    --jade-deep: #0d3f30;
+    --gold: #c4a35a;
+    --gold-soft: #d4bc7a;
+    --surface: rgba(232, 240, 234, 0.12);
+    --line: rgba(232, 240, 234, 0.22);
+    --font-display: "Cormorant Garamond", Georgia, serif;
+    --font-body: "Outfit", sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    font-family: var(--font-body);
+    color: var(--mist);
+    background: var(--jade-deep);
+    overflow: hidden;
+}
+
+.atmosphere {
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 80% 60% at 20% 10%, rgba(196, 163, 90, 0.18), transparent 50%),
+        radial-gradient(ellipse 70% 50% at 85% 80%, rgba(26, 107, 79, 0.55), transparent 55%),
+        radial-gradient(ellipse 100% 80% at 50% 40%, #14523d 0%, var(--jade-deep) 70%);
+    animation: drift 18s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+.atmosphere::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.4;
+}
+
+@keyframes drift {
+    from { transform: scale(1) translate(0, 0); }
+    to { transform: scale(1.06) translate(-1.5%, 1%); }
+}
+
+.app {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 22rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.75rem;
+    text-align: center;
+    animation: rise 0.9s ease-out both;
+}
+
+@keyframes rise {
+    from {
+        opacity: 0;
+        transform: translateY(1.25rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.brand h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3.25rem, 12vw, 4.5rem);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    color: var(--mist);
+}
+
+.brand p {
+    margin-top: 0.65rem;
+    font-size: 0.95rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: rgba(232, 240, 234, 0.65);
+}
+
+.counter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.count-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+}
+
+.count {
+    font-family: var(--font-display);
+    font-size: clamp(5.5rem, 22vw, 7.5rem);
+    font-weight: 500;
+    line-height: 1;
+    color: var(--mist);
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.count.pulse {
+    transform: scale(1.06);
+    color: var(--gold-soft);
+}
+
+.actions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.btn-tap {
+    width: 9.5rem;
+    height: 9.5rem;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 35% 30%, rgba(212, 188, 122, 0.25), transparent 45%),
+        var(--surface);
+    color: var(--mist);
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.btn-tap:hover {
+    border-color: var(--gold);
+    background:
+        radial-gradient(circle at 35% 30%, rgba(212, 188, 122, 0.35), transparent 50%),
+        rgba(232, 240, 234, 0.16);
+}
+
+.btn-tap:active {
+    transform: scale(0.94);
+}
+
+.btn-reset {
+    background: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    color: rgba(232, 240, 234, 0.45);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 0.25s ease;
+}
+
+.btn-reset:hover {
+    color: var(--gold-soft);
+}
+
+@media (max-width: 380px) {
+    .app {
+        gap: 2.25rem;
+    }
+
+    .btn-tap {
+        width: 8.25rem;
+        height: 8.25rem;
+    }
+}
